@@ -154,3 +154,7 @@ go.work
 
 # Postman tests reports
 tests/postman/reports/
+
+# Python work
+venv
+__pycache__
