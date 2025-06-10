@@ -2,7 +2,7 @@ from aiohttp.web import View, Response, Request
 from aiohttp import ClientSession
 from typing import Optional
 
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import random
 
@@ -118,7 +118,7 @@ class ProxyView(View):
                             status=response.status,
                         )
             if method.upper() == "GET":
-                async with session.get(request_url, ssl=False) as response:
+                async with session.get(request_url, ssl=False, params=(urlparse(self.request.url)).query) as response:
                     if 200 <= response.status < 300:
                         data = await response.text()
                         return Response(text=data, content_type="application/json", status=response.status)
