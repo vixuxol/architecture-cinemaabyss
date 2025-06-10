@@ -96,6 +96,16 @@ services:
     environment:
       PORT: 8082
       KAFKA_BROKERS: kafka:9092
+      KAFKA_CONSUMER_TOPICS: movie-events,payment-events,user-events
+      KAFKA_PRODUCER_TOPICS: movie-events,payment-events,user-events
+      KAFKA_HOSTS: kafka
+      KAFKA_PORT: 9092
+    restart: always
+    healthcheck:
+      test: curl --fail http://localhost:8082/api/events/health || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 3
     networks:
       - cinemaabyss-network
 

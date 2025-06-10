@@ -5,7 +5,7 @@
 1. Спроектируйте to be архитектуру КиноБездны, разделив всю систему на отдельные домены и организовав интеграционное взаимодействие и единую точку вызова сервисов.
 Результат представьте в виде контейнерной диаграммы в нотации С4.
 Добавьте ссылку на файл в этот шаблон
-[ссылка на файл](ссылка)
+[ссылка на файл](https://www.plantuml.com/plantuml/png/98en4W4m403xlEAUuYiAXPbeE3q-e57f_E14CcAul67lHpBCThkxsEbog_jDJhhMl18kT8n7730-4nEk33nED5uuRQP14IhlE0ktdodqEFxdZZEuqtXISImb_RPMDRsDsq3qhbynzSa1il4XFVLKnqbtkqsohhNf7eCHDP7PKAIM7CKrYlxtaY9ZXN82j40kakPZtXiE-IZJ0Hke3BDfePQM14kZY-87gONgQ-gjWYrpvtvQB2pkpXh9sxxg7LbXD9FcCs7QnKOAjBMvbTIHMgn-_B1MgFdkvdhHecEotdM_CcrdTAZemggADLbdz3n0dSBiphzc_htKUvy4Eqy3KljIJGme13a7g6j0gCdvDaFNEsInzPxMF4cQdHH5kVTaxNmbDRMuhFREUSHemM12p0X4NxJo0H0nYarZgK4srkF4fFkhltY-ndrBcgF7LtaVMOqAKk05O5uOuIFtoxf46mFkk6v3VfuUkSQm3yUyUVnD-lBSkyhp52YAbT6CdjFUNvZU5zlzVvZI2VnT01nAvz-eMdQTJ_OViDnGroafXZu2psTyGYUixFZKTuc2p_vqmVy9TQt8GTZekAKeGesBc-mILyPqOogfA9B5RrZcRByPzeCyXN8d7_Z_q6GygyjRN-gV4_vhW_K5AjHYE9p1X6TxYh5S__eHcNQuzvdUW6I5fZwQyBpIRFVG6TyLF1WBg1I4H4lVUtBifeidvx2X2siU1_PaGtG4m0rMbUJsU_Z-9G2wlHRvekVDPhqw2SWPTf1PIVP92agYWsIExTwWnaRg9euIXJ2zvgI-dhUaEUt3jF6IBM7hAqU6W-kOvWzPam7tdF31aaAc6XvwFQm1bUJzXE5A-yO2xh93iIKeExIF4BspYJlOqmO9hTYEtKNxkBKDkSve9oj5muPjmzaAYt13mPkj7etQNI9ZXUvvs0wIOo1R6yUDfVBtws2LR2mvg94Hi38z3_EVpdYOsWqnZiXfai6PmLyfT2n5NEIh3F7cT31lVMquBFyKnOPKkfEZt6Fd3dXBeuZ6fAZED_8YMi89Mfk5Db9zgZoEP7Td5XoYmP7fCujcaHVId7qBjy2dhr_N1zaT11DlY0h58-awA3C0XjHoyRdySfkWCw7d6frj_339ZSXim7Kav8CKuCRJzG8jK-8KBcYw8MQfcuIPzDTPls5rT0z7b4Qb1zHCWkyD7SNphhZ7ayX-k16sYovWYzgXI3VFKMckjzbgStS9fYEBur_WeAWtPdMuNXByirsUHzzhSvZ-iCU-RHO1L8snledMlJxG8sL753Ta-IvzrSyUh6_Llm00)
 
 # Задание 2
 
@@ -58,6 +58,9 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka из UI http://localhost:8090 
+
+![Скриншот прогона тестов](local-run-tests.png)
+![Скриншот состояния топиков](image.png)
 
 # Задание 3
 
@@ -275,6 +278,9 @@ cat .docker/config.json | base64
 #### Шаг 3
 Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
 
+![Скриншот вызова api https://cinemaabyss.example.com/api/movies](image-1.png)
+![Скриншот логов сервиса event-service после вызова тестов](image-2.png)
+![Скриншот части тестов](image-3.png)
 
 # Задание 4
 Для простоты дальнейшего обновления и развертывания вам как архитектуру необходимо так же реализовать helm-чарты для прокси-сервиса и проверить работу 
@@ -349,6 +355,9 @@ minikube tunnel
 Потом вызовите 
 https://cinemaabyss.example.com/api/movies
 и приложите скриншот развертывания helm и вывода https://cinemaabyss.example.com/api/movies
+
+![Скриншот развертывания с помощью helm](image-4.png)
+![Скриншот вывода https://cinemaabyss.example.com/api/movies ](image-5.png)
 
 ## Удаляем все
 

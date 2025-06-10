@@ -120,6 +120,7 @@ Thumbs.db
 .helm/
 charts/*/charts/
 charts/*/requirements.lock
+.srckuberneteshelm
 .cache/
 
 # Test coverage
@@ -154,3 +155,7 @@ go.work
 
 # Postman tests reports
 tests/postman/reports/
+
+# Python work
+venv
+__pycache__
