@@ -118,7 +118,7 @@ class ProxyView(View):
                             status=response.status,
                         )
             if method.upper() == "GET":
-                async with session.get(request_url, ssl=False, params=(urlparse(self.request.url)).query) as response:
+                async with session.get(request_url, ssl=False, params=(urlparse(str(self.request.url))).query) as response:
                     if 200 <= response.status < 300:
                         data = await response.text()
                         return Response(text=data, content_type="application/json", status=response.status)
