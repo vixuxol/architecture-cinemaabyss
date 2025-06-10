@@ -1,0 +1,61 @@
+@startuml
+title Диаграмма Контейнеров для Сервиса Кинобездна
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(user, "User", "Anyone with internet access and a desire to watch a movie")
+
+System(CinemaAbyss, "Cinema Abyss System", "Online cinema aggregator")
+System_Ext(PaymentSystem, "External Payment System", "")
+System_Ext(OnlineCinema, "External Online Cinemas", "")
+System_Ext(RecommendationSystem, "External Recommendation System", "")
+System_Ext(S3, "S3", "")
+
+
+Container_Boundary(CinemaAbyss, "Cinema Abyss System") {
+  Container(WebApp, "Web ARepplication", "Javascript, React.js", "Handles user interactions with system")
+  Container(MobileApp, "Mobile Application", "Kotlin, Swift", "Handles user interactions with system")
+
+  Container(CDN, "CDN")
+  Container(LoadBalancer, "Load Balancer")
+
+  Container(APIGateway, "API Gateway", "Go", "Entry point for all API requests")
+  Container(MessageBroker, "Message Broker", "Rabbitmq", "For async interactions (gRPC)")
+ 
+  Container(UserService, "User Service", "Go", "Managing user accounts and authentications")
+  Container(StreamingService, "Streaming Service", "Go", "Video streaming-related functionality")
+  Container(Engine, "Apache Spark Engine", "Apache Spark", "")
+  Container(SearchService, "Search Service", "Go", "Responsible for handling search-related functionality")
+
+  Container(UsersDatabase, "Users Database", "PostgreSQL", "Stores data about users")
+  Container(VideoMetaDatabase, "Video Meta Database", "ElasticSearch", "Stores data about movies (meta)")
+}
+
+Rel(user, WebApp, "Uses the system")
+Rel(user, MobileApp, "Uses the system")
+
+Rel(WebApp,CDN,"", "")
+Rel(MobileApp,CDN,"", "")
+Rel(OnlineCinema,CDN,"", "")
+
+Rel(CDN,LoadBalancer,"", "")
+
+Rel(LoadBalancer,APIGateway,"With HTTP requests interact with backend API", "HTTPS/JSON")
+
+Rel(APIGateway, MessageBroker,"Routes requests to specific service", "JSON")
+
+Rel(UserService, MessageBroker,"For getting requests and providing responses (gRPC)")
+Rel(StreamingService, MessageBroker,"For getting requests and providing responses (gRPC)")
+Rel(SearchService, MessageBroker,"For getting requests and providing responses (gRPC)")
+
+Rel(UserService, PaymentSystem,"For payment transactions")
+Rel(UserService,UsersDatabase,"CRUD operations with users")
+
+Rel(StreamingService, Engine, "")
+Rel(Engine, S3, "")
+
+Rel(SearchService, RecommendationSystem,"For recommendation algorithms")
+Rel(SearchService, VideoMetaDatabase,"For searching")
+@enduml
