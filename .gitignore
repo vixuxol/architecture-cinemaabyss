@@ -120,6 +120,7 @@ Thumbs.db
 .helm/
 charts/*/charts/
 charts/*/requirements.lock
+.srckuberneteshelm
 .cache/
 
 # Test coverage
